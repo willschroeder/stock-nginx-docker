@@ -1,6 +1,19 @@
-version: '3'
+version: '3.5'
+networks:
+  docker-test:
+      name: docker-test
 services:
   web:
     build: .
     ports:
       - "8080:8080"
+    networks:
+      - docker-test
+  httpecho:
+    image: solsson/http-echo
+    environment:
+      PORT: 3050
+    ports:
+        - '3050:3050'
+    networks:
+        - docker-test
