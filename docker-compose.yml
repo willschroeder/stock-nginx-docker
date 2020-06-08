@@ -10,9 +10,8 @@ services:
     networks:
       - docker-test
   httpecho:
-    image: solsson/http-echo
-    environment:
-      PORT: 3050
+    image: hashicorp/http-echo
+    entrypoint: /http-echo -text 'external echo container found!' -listen=:3050
     ports:
         - '3050:3050'
     networks:
